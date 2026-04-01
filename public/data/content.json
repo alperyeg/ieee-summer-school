@@ -24,10 +24,10 @@
       "title": "Confirmed Speakers",
       "items": [
         {
-          "name": "Prof. Dr. Elena Schmidt",
+          "name": "Prof. Dr. Edal Kayacan",
           "affiliation": "Paderborn University",
-          "topic": "Evolutionary Robotics and Swarm Intelligence",
-          "image": "https://picsum.photos/seed/speaker1/400/400"
+          "topic": "Can we build drones that not only think but also adapt?",
+          "image": "https://pm.uni-paderborn.de/_Resources/Persistent/Thumbnails/310x310/98838.png"
         },
         {
           "name": "Dr. Marcus Weber",
@@ -77,14 +77,14 @@
     {
       "id": "venue",
       "title": "Venue & Travel",
-      "content": "Paderborn is a historic city in Germany, home to one of the leading technical universities. The summer school will be held at the Heinz Nixdorf Institute, a hub for interdisciplinary research in computer science and engineering.",
-      "address": "Fürstenallee 11, 33102 Paderborn, Germany"
+      "content": "Paderborn is a historic city in Germany. The summer school will be held at the University of Paderborn.",
+      "address": "Warburger Str. 100, 33098 Paderborn, Germany"
     },
     {
       "id": "registration",
       "title": "Registration",
       "content": "Registration is open to graduate students and researchers. IEEE CIS members receive a discounted rate. Applications must include a CV and a short statement of interest.",
-      "deadline": "May 15, 2026",
+      "deadline": "June 15, 2026",
       "link": "https://tally.so/r/b5r9jZ"
     }
   ],
