@@ -1,0 +1,98 @@
+{
+  "school": {
+    "title": "IEEE CIS Summer School 2026",
+    "subtitle": "Computational Intelligence in Robotics",
+    "dates": "July  27 - 30, 2026",
+    "location": "Paderborn University, Germany",
+    "description": "Join us for an intensive five-day summer school focusing on the latest advancements in Computational Intelligence applied to Robotics. This program features world-renowned speakers, hands-on workshops, and networking opportunities for PhD students and early-career researchers.",
+    "heroImage": "https://planethibbel.com/wp-content/uploads/2022/08/Paderborn90-1024x683.jpg"
+  },
+  "sections": [
+    {
+      "id": "about",
+      "title": "About the Summer School",
+      "content": "The IEEE Computational Intelligence Society (CIS) Summer School 2026 aims to provide participants with a deep understanding of how fuzzy logic, neural networks, and evolutionary computation are transforming the field of robotics. From autonomous navigation to human-robot interaction, we cover the most critical topics in the industry today."
+    },
+    {
+      "id": "speakers",
+      "title": "Confirmed Speakers",
+      "items": [
+        {
+          "name": "Prof. Dr. Elena Schmidt",
+          "affiliation": "Paderborn University",
+          "topic": "Evolutionary Robotics and Swarm Intelligence",
+          "image": "https://picsum.photos/seed/speaker1/400/400"
+        },
+        {
+          "name": "Dr. Marcus Weber",
+          "affiliation": "ETH Zurich",
+          "topic": "Deep Reinforcement Learning for Manipulation",
+          "image": "https://picsum.photos/seed/speaker2/400/400"
+        },
+        {
+          "name": "Prof. Sarah Jenkins",
+          "affiliation": "MIT CSAIL",
+          "topic": "Human-Robot Collaboration in Dynamic Environments",
+          "image": "https://picsum.photos/seed/speaker3/400/400"
+        }
+      ]
+    },
+    {
+      "id": "program",
+      "title": "Program Schedule",
+      "schedule": [
+        {
+          "day": "Day 1: Foundations",
+          "events": [
+            {
+              "time": "09:00 - 10:30",
+              "title": "Introduction to CIS in Robotics"
+            },
+            {
+              "time": "11:00 - 12:30",
+              "title": "Neural Networks for Perception"
+            },
+            {
+              "time": "14:00 - 17:00",
+              "title": "Workshop: Python for Robotics"
+            }
+          ]
+        },
+        {
+          "day": "Day 2: Navigation",
+          "events": [
+            { "time": "09:00 - 10:30", "title": "Fuzzy Logic Controllers" },
+            { "time": "11:00 - 12:30", "title": "SLAM and Path Planning" },
+            { "time": "14:00 - 17:00", "title": "Hands-on: ROS2 Integration" }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "venue",
+      "title": "Venue & Travel",
+      "content": "Paderborn is a historic city in Germany, home to one of the leading technical universities. The summer school will be held at the Heinz Nixdorf Institute, a hub for interdisciplinary research in computer science and engineering.",
+      "address": "Fürstenallee 11, 33102 Paderborn, Germany"
+    },
+    {
+      "id": "registration",
+      "title": "Registration",
+      "content": "Registration is open to graduate students and researchers. IEEE CIS members receive a discounted rate. Applications must include a CV and a short statement of interest.",
+      "deadline": "May 15, 2026",
+      "link": "#"
+    }
+  ],
+  "sponsors": [
+    { "name": "IEEE CIS", "logo": "https://picsum.photos/seed/ieee/200/100" },
+    {
+      "name": "Paderborn University",
+      "logo": "https://picsum.photos/seed/upb/200/100"
+    },
+    { "name": "DFG", "logo": "https://picsum.photos/seed/dfg/200/100" }
+  ],
+  "contact": {
+    "email": "cis-summerschool2026@upb.de",
+    "twitter": "@IEEECIS_SS26",
+    "website": "https://www.upb.de/cis-ss2026"
+  }
+}
