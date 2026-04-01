@@ -257,7 +257,7 @@ const SectionWrapper = ({ section }: { section: Section; key?: any }) => {
                   <MapPin className="w-6 h-6 text-blue-600 mt-1" />
                   <div>
                     <p className="font-bold text-slate-900">
-                      Heinz Nixdorf Institute
+                      University of Paderborn
                     </p>
                     <p className="text-slate-500">{section.address}</p>
                   </div>
