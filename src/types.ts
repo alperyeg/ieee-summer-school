@@ -33,6 +33,7 @@ export interface Section {
 export interface Sponsor {
   name: string;
   logo: string;
+  link: string;
 }
 
 export interface Contact {

@@ -15,12 +15,14 @@ import {
   ChevronRight,
   Menu,
   X,
-  ExternalLink
+  ExternalLink,
+  Sun,
+  Moon
 } from "lucide-react";
 import { useState, useEffect } from "react";
 import { ContentData, Section, Speaker, DaySchedule } from "./types";
 
-const Navbar = ({ data }: { data: ContentData }) => {
+const Navbar = ({ data, theme, toggleTheme }: { data: ContentData; theme: string; toggleTheme: () => void }) => {
   const [isScrolled, setIsScrolled] = useState(false);
   const [isMenuOpen, setIsMenuOpen] = useState(false);
 
@@ -34,41 +36,58 @@ const Navbar = ({ data }: { data: ContentData }) => {
 
   return (
     <nav className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${
-      isScrolled ? "bg-white/90 backdrop-blur-md shadow-sm py-3" : "bg-transparent py-6"
+      isScrolled ? "bg-white/90 dark:bg-slate-900/90 backdrop-blur-md shadow-sm py-3" : "bg-transparent py-6"
     }`}>
       <div className="max-w-7xl mx-auto px-6 flex justify-between items-center">
         <a href="#" className={`font-bold text-xl tracking-tight transition-colors ${
-          isScrolled ? "text-slate-900" : "text-white"
+          isScrolled ? "text-slate-900 dark:text-white" : "text-white"
         }`}>
           {data.school.title}
         </a>
 
         {/* Desktop Nav */}
-        <div className="hidden md:flex gap-8">
+        <div className="hidden md:flex gap-8 items-center">
           {navLinks.map((link) => (
             <a
               key={link.name}
               href={link.href}
               className={`text-sm font-medium transition-colors hover:opacity-70 ${
-                isScrolled ? "text-slate-600" : "text-white/90"
+                isScrolled ? "text-slate-600 dark:text-slate-300" : "text-white/90"
               }`}
             >
               {link.name}
             </a>
           ))}
+          <button
+            onClick={toggleTheme}
+            className={`p-2 rounded-full transition-colors ${
+              isScrolled ? "bg-slate-100 dark:bg-slate-800 text-slate-600 dark:text-slate-300" : "bg-white/10 text-white hover:bg-white/20"
+            }`}
+          >
+            {theme === "dark" ? <Sun className="w-5 h-5" /> : <Moon className="w-5 h-5" />}
+          </button>
         </div>
 
         {/* Mobile Toggle */}
-        <button 
-          className="md:hidden"
-          onClick={() => setIsMenuOpen(!isMenuOpen)}
-        >
-          {isMenuOpen ? (
-            <X className={isScrolled ? "text-slate-900" : "text-white"} />
-          ) : (
-            <Menu className={isScrolled ? "text-slate-900" : "text-white"} />
-          )}
-        </button>
+        <div className="flex items-center gap-4 md:hidden">
+          <button
+            onClick={toggleTheme}
+            className={`p-2 rounded-full transition-colors ${
+              isScrolled ? "bg-slate-100 dark:bg-slate-800 text-slate-600 dark:text-slate-300" : "bg-white/10 text-white hover:bg-white/20"
+            }`}
+          >
+            {theme === "dark" ? <Sun className="w-5 h-5" /> : <Moon className="w-5 h-5" />}
+          </button>
+          <button 
+            onClick={() => setIsMenuOpen(!isMenuOpen)}
+          >
+            {isMenuOpen ? (
+              <X className={isScrolled ? "text-slate-900 dark:text-white" : "text-white"} />
+            ) : (
+              <Menu className={isScrolled ? "text-slate-900 dark:text-white" : "text-white"} />
+            )}
+          </button>
+        </div>
       </div>
 
       {/* Mobile Menu */}
@@ -76,14 +95,14 @@ const Navbar = ({ data }: { data: ContentData }) => {
         <motion.div 
           initial={{ opacity: 0, y: -20 }}
           animate={{ opacity: 1, y: 0 }}
-          className="absolute top-full left-0 right-0 bg-white border-b border-slate-100 p-6 flex flex-col gap-4 md:hidden"
+          className="absolute top-full left-0 right-0 bg-white dark:bg-slate-900 border-b border-slate-100 dark:border-slate-800 p-6 flex flex-col gap-4 md:hidden"
         >
           {navLinks.map((link) => (
             <a
               key={link.name}
               href={link.href}
               onClick={() => setIsMenuOpen(false)}
-              className="text-slate-600 font-medium"
+              className="text-slate-600 dark:text-slate-300 font-medium"
             >
               {link.name}
             </a>
@@ -156,9 +175,9 @@ const Hero = ({ data }: { data: ContentData }) => (
 const SpeakerCard = ({ speaker }: { speaker: Speaker; key?: any }) => (
   <motion.div 
     whileHover={{ y: -5 }}
-    className="group bg-white border border-slate-100 rounded-2xl overflow-hidden shadow-sm hover:shadow-xl transition-all"
+    className="group bg-white dark:bg-slate-800 border border-slate-100 dark:border-slate-700 rounded-2xl overflow-hidden shadow-sm hover:shadow-xl transition-all"
   >
-    <div className="aspect-square overflow-hidden bg-slate-100 flex items-center justify-center">
+    <div className="aspect-square overflow-hidden bg-slate-100 dark:bg-slate-700 flex items-center justify-center">
       {speaker.image ? (
         <img 
           src={speaker.image} 
@@ -167,20 +186,20 @@ const SpeakerCard = ({ speaker }: { speaker: Speaker; key?: any }) => (
           referrerPolicy="no-referrer"
         />
       ) : (
-        <div className="w-full h-full flex items-center justify-center bg-slate-200 text-slate-400">
+        <div className="w-full h-full flex items-center justify-center bg-slate-200 dark:bg-slate-600 text-slate-400 dark:text-slate-500">
           <Users className="w-12 h-12" />
         </div>
       )}
     </div>
     <div className="p-6">
-      <h3 className="text-xl font-bold text-slate-900 mb-1">{speaker.name}</h3>
-      <p className="text-sm font-semibold text-blue-600 mb-3">{speaker.affiliation}</p>
-      <div className="h-px w-8 bg-slate-200 mb-3" />
-      <p className="text-sm text-slate-800 font-medium mb-2">
+      <h3 className="text-xl font-bold text-slate-900 dark:text-white mb-1">{speaker.name}</h3>
+      <p className="text-sm font-semibold text-blue-600 dark:text-blue-400 mb-3">{speaker.affiliation}</p>
+      <div className="h-px w-8 bg-slate-200 dark:bg-slate-700 mb-3" />
+      <p className="text-sm text-slate-800 dark:text-slate-200 font-medium mb-2">
         {speaker.topic}
       </p>
       {speaker.abstract && (
-        <p className="text-xs text-slate-500 leading-relaxed mb-4 line-clamp-3 group-hover:line-clamp-none transition-all">
+        <p className="text-xs text-slate-500 dark:text-slate-400 leading-relaxed mb-4 line-clamp-3 group-hover:line-clamp-none transition-all">
           {speaker.abstract}
         </p>
       )}
@@ -189,7 +208,7 @@ const SpeakerCard = ({ speaker }: { speaker: Speaker; key?: any }) => (
           href={speaker.website} 
           target="_blank" 
           rel="noopener noreferrer"
-          className="text-xs font-bold text-blue-600 hover:text-blue-800 inline-flex items-center gap-1"
+          className="text-xs font-bold text-blue-600 dark:text-blue-400 hover:text-blue-800 dark:hover:text-blue-300 inline-flex items-center gap-1"
         >
           Speaker Profile <ExternalLink className="w-3 h-3" />
         </a>
@@ -204,7 +223,7 @@ const Schedule = ({ schedule }: { schedule: DaySchedule[] }) => {
   return (
     <div className="space-y-10">
       {/* Day Selector */}
-      <div className="flex flex-wrap gap-3 border-b border-slate-100 pb-6">
+      <div className="flex flex-wrap gap-3 border-b border-slate-100 dark:border-slate-800 pb-6">
         {schedule.map((day, idx) => (
           <button
             key={idx}
@@ -212,7 +231,7 @@ const Schedule = ({ schedule }: { schedule: DaySchedule[] }) => {
             className={`px-6 py-3 rounded-full text-sm font-bold transition-all ${
               activeDay === idx
                 ? "bg-blue-600 text-white shadow-lg shadow-blue-200"
-                : "bg-slate-50 text-slate-500 hover:bg-slate-100"
+                : "bg-slate-50 dark:bg-slate-800 text-slate-500 dark:text-slate-400 hover:bg-slate-100 dark:hover:bg-slate-700"
             }`}
           >
             {day.day}
@@ -231,13 +250,13 @@ const Schedule = ({ schedule }: { schedule: DaySchedule[] }) => {
         {schedule[activeDay].events.map((event, eIdx) => (
           <div 
             key={eIdx} 
-            className="flex flex-col sm:flex-row sm:items-center gap-6 p-6 bg-white rounded-2xl border border-slate-100 hover:border-blue-200 hover:shadow-md transition-all group"
+            className="flex flex-col sm:flex-row sm:items-center gap-6 p-6 bg-white dark:bg-slate-800 rounded-2xl border border-slate-100 dark:border-slate-700 hover:border-blue-200 dark:hover:border-blue-800 hover:shadow-md transition-all group"
           >
-            <div className="flex items-center gap-2 text-blue-600 font-mono text-sm font-bold min-w-[140px] bg-blue-50 px-3 py-1 rounded-lg w-fit">
+            <div className="flex items-center gap-2 text-blue-600 dark:text-blue-400 font-mono text-sm font-bold min-w-[140px] bg-blue-50 dark:bg-blue-900/30 px-3 py-1 rounded-lg w-fit">
               <Clock className="w-4 h-4" />
               {event.time}
             </div>
-            <div className="font-bold text-slate-800 text-lg group-hover:text-blue-700 transition-colors">
+            <div className="font-bold text-slate-800 dark:text-slate-200 text-lg group-hover:text-blue-700 dark:group-hover:text-blue-400 transition-colors">
               {event.title}
             </div>
           </div>
@@ -249,7 +268,7 @@ const Schedule = ({ schedule }: { schedule: DaySchedule[] }) => {
 
 const SectionWrapper = ({ section }: { section: Section; key?: any }) => {
   return (
-    <section id={section.id} className="py-24 border-b border-slate-100 last:border-0">
+    <section id={section.id} className="py-24 border-b border-slate-100 dark:border-slate-800 last:border-0">
       <div className="max-w-7xl mx-auto px-6">
         <motion.div
           initial={{ opacity: 0, y: 20 }}
@@ -257,21 +276,21 @@ const SectionWrapper = ({ section }: { section: Section; key?: any }) => {
           viewport={{ once: true }}
           transition={{ duration: 0.6 }}
         >
-          <h2 className="text-4xl font-bold text-slate-900 mb-12 tracking-tight flex items-center gap-4">
+          <h2 className="text-4xl font-bold text-slate-900 dark:text-white mb-12 tracking-tight flex items-center gap-4">
             <span className="w-12 h-1 bg-blue-600 rounded-full" />
             {section.title}
           </h2>
 
           {section.content && (
             <div className="max-w-3xl">
-              <p className="text-lg text-slate-600 leading-relaxed mb-8">
+              <p className="text-lg text-slate-600 dark:text-slate-400 leading-relaxed mb-8">
                 {section.content}
               </p>
               
               {section.points && (
                 <ul className="grid sm:grid-cols-2 gap-4 mb-12">
                   {section.points.map((point, pIdx) => (
-                    <li key={pIdx} className="flex items-start gap-3 text-slate-600">
+                    <li key={pIdx} className="flex items-start gap-3 text-slate-600 dark:text-slate-400">
                       <div className="mt-1.5 w-1.5 h-1.5 rounded-full bg-blue-600 shrink-0" />
                       <span className="text-base font-medium">{point}</span>
                     </li>
@@ -281,15 +300,15 @@ const SectionWrapper = ({ section }: { section: Section; key?: any }) => {
 
               {section.address && (
                 <div className="space-y-6">
-                  <div className="flex items-start gap-3 p-6 bg-slate-50 rounded-2xl border border-slate-100">
-                    <MapPin className="w-6 h-6 text-blue-600 mt-1" />
+                  <div className="flex items-start gap-3 p-6 bg-slate-50 dark:bg-slate-800/50 rounded-2xl border border-slate-100 dark:border-slate-700">
+                    <MapPin className="w-6 h-6 text-blue-600 dark:text-blue-400 mt-1" />
                     <div>
-                      <p className="font-bold text-slate-900">Paderborn University</p>
-                      <p className="text-slate-500">{section.address}</p>
+                      <p className="font-bold text-slate-900 dark:text-white">Paderborn University</p>
+                      <p className="text-slate-500 dark:text-slate-400">{section.address}</p>
                     </div>
                   </div>
                   {section.googleMaps && (
-                    <div className="w-full h-[400px] rounded-2xl overflow-hidden border border-slate-100 shadow-sm">
+                    <div className="w-full h-[400px] rounded-2xl overflow-hidden border border-slate-100 dark:border-slate-700 shadow-sm">
                       <iframe 
                         src={section.googleMaps}
                         width="100%" 
@@ -305,14 +324,14 @@ const SectionWrapper = ({ section }: { section: Section; key?: any }) => {
               )}
               {section.deadline && (
                 <div className="flex flex-col sm:flex-row gap-8 mt-12">
-                  <div className="flex-1 p-8 bg-blue-600 text-white rounded-2xl shadow-lg shadow-blue-200">
+                  <div className="flex-1 p-8 bg-blue-600 text-white rounded-2xl shadow-lg shadow-blue-200 dark:shadow-none">
                     <p className="text-blue-100 text-sm font-bold uppercase tracking-wider mb-2">Application Deadline</p>
                     <p className="text-3xl font-bold">{section.deadline}</p>
                   </div>
                   <div className="flex-1 flex items-center">
                     <a 
                       href={section.link} 
-                      className="w-full py-4 px-6 border-2 border-slate-900 text-slate-900 font-bold rounded-2xl text-center hover:bg-slate-900 hover:text-white transition-all flex items-center justify-center gap-2"
+                      className="w-full py-4 px-6 border-2 border-slate-900 dark:border-white text-slate-900 dark:text-white font-bold rounded-2xl text-center hover:bg-slate-900 dark:hover:bg-white hover:text-white dark:hover:text-slate-900 transition-all flex items-center justify-center gap-2"
                     >
                       Registration Portal
                       <ExternalLink className="w-4 h-4" />
@@ -341,18 +360,25 @@ const SectionWrapper = ({ section }: { section: Section; key?: any }) => {
 };
 
 const Sponsors = ({ data }: { data: ContentData }) => (
-  <section className="py-20 bg-slate-50">
+  <section className="py-20 bg-slate-50 dark:bg-slate-900/50">
     <div className="max-w-7xl mx-auto px-6 text-center">
-      <p className="text-xs font-bold text-slate-400 uppercase tracking-[0.2em] mb-10">Supported By</p>
+      <p className="text-xs font-bold text-slate-400 dark:text-slate-500 uppercase tracking-[0.2em] mb-10">Supported By</p>
       <div className="flex flex-wrap justify-center items-center gap-12 md:gap-24 opacity-50 grayscale hover:grayscale-0 transition-all">
         {data.sponsors.map((sponsor, idx) => (
-          <img 
-            key={idx} 
-            src={sponsor.logo} 
-            alt={sponsor.name} 
-            className="h-12 md:h-16 object-contain"
-            referrerPolicy="no-referrer"
-          />
+          <a
+            key={idx}
+            href={sponsor.link}
+            target="_blank"
+            rel="noopener noreferrer"
+            className="hover:scale-110 transition-transform"
+          >
+            <img 
+              src={sponsor.logo} 
+              alt={sponsor.name} 
+              className="h-12 md:h-16 object-contain dark:invert dark:opacity-80"
+              referrerPolicy="no-referrer"
+            />
+          </a>
         ))}
       </div>
     </div>
@@ -360,7 +386,7 @@ const Sponsors = ({ data }: { data: ContentData }) => (
 );
 
 const Footer = ({ data }: { data: ContentData }) => (
-  <footer className="bg-slate-900 text-white py-20">
+  <footer className="bg-slate-900 dark:bg-black text-white py-20">
     <div className="max-w-7xl mx-auto px-6">
       <div className="grid md:grid-cols-2 gap-12 items-center">
         <div>
@@ -393,6 +419,26 @@ export default function App() {
   const [data, setData] = useState<ContentData | null>(null);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState<string | null>(null);
+  const [theme, setTheme] = useState("light");
+
+  useEffect(() => {
+    const savedTheme = localStorage.getItem("theme") || "light";
+    setTheme(savedTheme);
+    if (savedTheme === "dark") {
+      document.documentElement.classList.add("dark");
+    }
+  }, []);
+
+  const toggleTheme = () => {
+    const newTheme = theme === "light" ? "dark" : "light";
+    setTheme(newTheme);
+    localStorage.setItem("theme", newTheme);
+    if (newTheme === "dark") {
+      document.documentElement.classList.add("dark");
+    } else {
+      document.documentElement.classList.remove("dark");
+    }
+  };
 
   useEffect(() => {
     const fetchData = async () => {
@@ -436,8 +482,8 @@ export default function App() {
   }
 
   return (
-    <div className="min-h-screen bg-white font-sans selection:bg-blue-100 selection:text-blue-900">
-      <Navbar data={data} />
+    <div className="min-h-screen bg-white dark:bg-slate-900 font-sans selection:bg-blue-100 selection:text-blue-900 transition-colors duration-300">
+      <Navbar data={data} theme={theme} toggleTheme={toggleTheme} />
       <Hero data={data} />
       
       <main>
