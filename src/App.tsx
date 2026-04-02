@@ -198,33 +198,54 @@ const SpeakerCard = ({ speaker }: { speaker: Speaker; key?: any }) => (
   </motion.div>
 );
 
-const Schedule = ({ schedule }: { schedule: DaySchedule[] }) => (
-  <div className="space-y-12">
-    {schedule.map((day, idx) => (
-      <div key={idx} className="grid md:grid-cols-4 gap-8">
-        <div className="md:col-span-1">
-          <h3 className="text-2xl font-bold text-slate-900 sticky top-24">{day.day}</h3>
-        </div>
-        <div className="md:col-span-3 space-y-4">
-          {day.events.map((event, eIdx) => (
-            <div 
-              key={eIdx} 
-              className="flex flex-col sm:flex-row sm:items-center gap-4 p-5 bg-slate-50 rounded-xl border border-slate-100 hover:border-blue-200 transition-colors"
-            >
-              <div className="flex items-center gap-2 text-slate-400 font-mono text-sm min-w-[140px]">
-                <Clock className="w-4 h-4" />
-                {event.time}
-              </div>
-              <div className="font-semibold text-slate-800 text-lg">
-                {event.title}
-              </div>
-            </div>
-          ))}
-        </div>
+const Schedule = ({ schedule }: { schedule: DaySchedule[] }) => {
+  const [activeDay, setActiveDay] = useState(0);
+
+  return (
+    <div className="space-y-10">
+      {/* Day Selector */}
+      <div className="flex flex-wrap gap-3 border-b border-slate-100 pb-6">
+        {schedule.map((day, idx) => (
+          <button
+            key={idx}
+            onClick={() => setActiveDay(idx)}
+            className={`px-6 py-3 rounded-full text-sm font-bold transition-all ${
+              activeDay === idx
+                ? "bg-blue-600 text-white shadow-lg shadow-blue-200"
+                : "bg-slate-50 text-slate-500 hover:bg-slate-100"
+            }`}
+          >
+            {day.day}
+          </button>
+        ))}
       </div>
-    ))}
-  </div>
-);
+
+      {/* Events List */}
+      <motion.div
+        key={activeDay}
+        initial={{ opacity: 0, x: 20 }}
+        animate={{ opacity: 1, x: 0 }}
+        transition={{ duration: 0.4 }}
+        className="space-y-4"
+      >
+        {schedule[activeDay].events.map((event, eIdx) => (
+          <div 
+            key={eIdx} 
+            className="flex flex-col sm:flex-row sm:items-center gap-6 p-6 bg-white rounded-2xl border border-slate-100 hover:border-blue-200 hover:shadow-md transition-all group"
+          >
+            <div className="flex items-center gap-2 text-blue-600 font-mono text-sm font-bold min-w-[140px] bg-blue-50 px-3 py-1 rounded-lg w-fit">
+              <Clock className="w-4 h-4" />
+              {event.time}
+            </div>
+            <div className="font-bold text-slate-800 text-lg group-hover:text-blue-700 transition-colors">
+              {event.title}
+            </div>
+          </div>
+        ))}
+      </motion.div>
+    </div>
+  );
+};
 
 const SectionWrapper = ({ section }: { section: Section; key?: any }) => {
   return (
@@ -263,7 +284,7 @@ const SectionWrapper = ({ section }: { section: Section; key?: any }) => {
                   <div className="flex items-start gap-3 p-6 bg-slate-50 rounded-2xl border border-slate-100">
                     <MapPin className="w-6 h-6 text-blue-600 mt-1" />
                     <div>
-                      <p className="font-bold text-slate-900">University of Paderborn</p>
+                      <p className="font-bold text-slate-900">Paderborn University</p>
                       <p className="text-slate-500">{section.address}</p>
                     </div>
                   </div>
