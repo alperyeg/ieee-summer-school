@@ -131,9 +131,17 @@
     {
       "id": "venue",
       "title": "Venue & Travel",
-      "content": "Paderborn is a historic city in Germany. The summer school will be held at the University of Paderborn.",
+      "content": "The summer school will be held at Paderborn University, specifically in the O-Building. Paderborn is a historic city in Germany, known for its university and the world's largest computer museum. The venue is easily accessible by public transport and is located within walking distance of several hotels.",
       "address": "Warburger Str. 100, 33098 Paderborn, Germany",
-      "googleMaps": "https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2483.546443862547!2d8.768656176866127!3d51.70566717185876!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x47bb16194294828f%3A0x6a100516b976f7f!2sPaderborn%20University!5e0!3m2!1sen!2sde!4v1712044330000!5m2!1sen!2sde"
+      "googleMaps": "https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2485.466046777353!2d8.771216315768564!3d51.7056639796674!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x47ba49f697f66a2f%3A0x4227219107990!2sPaderborn%20University!5e0!3m2!1sen!2sde!4v1625565000000!5m2!1sen!2sde",
+      "airports": [
+        "Paderborn-Lippstadt Airport (PAD) — 20 min by car",
+        "Düsseldorf Airport (DUS) — 2 h by train",
+        "Frankfurt Airport (FRA) — 3 h by train"
+      ],
+      "train": "Paderborn Hauptbahnhof, then Bus 4 or 9 to \"Uni/Südring\" (15 min)",
+      "accommodation": "Discounted rates at partner hotels near campus and the city centre — details will be sent after registration.",
+      "wifi": "Eduroam available campus-wide. Guest accounts provided on arrival."
     },
     {
       "id": "social",
@@ -168,6 +176,33 @@
       "content": "Registration is open to graduate students and researchers. IEEE CIS members receive a discounted rate. Applications must include a CV and a short statement of interest.",
       "deadline": "June 15, 2026",
       "link": "https://tally.so/r/b5r9jZ"
+    },
+    {
+      "id": "faq",
+      "title": "Frequently Asked Questions",
+      "content": "Find answers to common questions about the summer school, registration, and logistics.",
+      "faqItems": [
+        {
+          "question": "Who can apply for the summer school?",
+          "answer": "The summer school is primarily aimed at undergrads and PhD students as well as early-career researchers working in Reinforcement Learning or related fields."
+        },
+        {
+          "question": "Is there a registration fee?",
+          "answer": "Will be added soon."
+        },
+        {
+          "question": "Will I receive a certificate of completion?",
+          "answer": "Yes, all participants who attend all days of the summer school will receive an official certificate of completion."
+        },
+        {
+          "question": "What is the language of the school?",
+          "answer": "All lectures, tutorials, and social activities will be conducted in English."
+        },
+        {
+          "question": "Are there any prerequisites for the hands-on tutorials?",
+          "answer": "Participants should have a basic understanding of Python and machine learning concepts."
+        }
+      ]
     }
   ],
   "sponsors": [

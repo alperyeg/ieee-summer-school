@@ -23,6 +23,11 @@ export interface SocialItem {
   description: string;
 }
 
+export interface FAQItem {
+  question: string;
+  answer: string;
+}
+
 export interface Section {
   id: string;
   title: string;
@@ -30,11 +35,16 @@ export interface Section {
   points?: string[];
   items?: Speaker[];
   socialItems?: SocialItem[];
+  faqItems?: FAQItem[];
   schedule?: DaySchedule[];
   address?: string;
   googleMaps?: string;
   deadline?: string;
   link?: string;
+  airports?: string[];
+  train?: string;
+  accommodation?: string;
+  wifi?: string;
 }
 
 export interface Sponsor {

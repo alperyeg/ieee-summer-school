@@ -19,6 +19,12 @@ import {
   Sun,
   Moon,
   Coffee,
+  ChevronDown,
+  ChevronUp,
+  Plane,
+  Train,
+  Hotel,
+  Wifi,
 } from "lucide-react";
 import { useState, useEffect } from "react";
 import { ContentData, Section, Speaker, DaySchedule } from "./types";
@@ -282,6 +288,50 @@ const SocialCard = ({ item }: { item: any; key?: any }) => (
   </motion.div>
 );
 
+const FAQAccordion = ({ items }: { items: any[] }) => {
+  const [openIndex, setOpenIndex] = useState<number | null>(null);
+
+  return (
+    <div className="space-y-4 mt-12">
+      {items.map((item, index) => (
+        <div
+          key={index}
+          className="border border-slate-200 dark:border-slate-700 rounded-2xl overflow-hidden"
+        >
+          <button
+            onClick={() => setOpenIndex(openIndex === index ? null : index)}
+            className="w-full flex items-center justify-between p-6 text-left bg-white dark:bg-slate-800 hover:bg-slate-50 dark:hover:bg-slate-700/50 transition-colors"
+          >
+            <span className="font-bold text-slate-900 dark:text-white text-lg">
+              {item.question}
+            </span>
+            {openIndex === index ? (
+              <ChevronUp
+                className="text-blue-600 dark:text-blue-400"
+                size={24}
+              />
+            ) : (
+              <ChevronDown
+                className="text-slate-400 dark:text-slate-600"
+                size={24}
+              />
+            )}
+          </button>
+          <motion.div
+            initial={false}
+            animate={{ height: openIndex === index ? "auto" : 0 }}
+            className="overflow-hidden bg-slate-50 dark:bg-slate-900/50"
+          >
+            <div className="p-6 text-slate-600 dark:text-slate-400 border-t border-slate-200 dark:border-slate-700 leading-relaxed">
+              {item.answer}
+            </div>
+          </motion.div>
+        </div>
+      ))}
+    </div>
+  );
+};
+
 const Schedule = ({ schedule }: { schedule: DaySchedule[] }) => {
   const [activeDay, setActiveDay] = useState(0);
 
@@ -350,7 +400,7 @@ const SectionWrapper = ({ section }: { section: Section; key?: any }) => {
           </h2>
 
           {section.content && (
-            <div className="max-w-3xl">
+            <div>
               <p className="text-lg text-slate-600 dark:text-slate-400 leading-relaxed mb-8">
                 {section.content}
               </p>
@@ -370,20 +420,101 @@ const SectionWrapper = ({ section }: { section: Section; key?: any }) => {
               )}
 
               {section.address && (
-                <div className="space-y-6">
-                  <div className="flex items-start gap-3 p-6 bg-slate-50 dark:bg-slate-800/50 rounded-2xl border border-slate-100 dark:border-slate-700">
-                    <MapPin className="w-6 h-6 text-blue-600 dark:text-blue-400 mt-1" />
-                    <div>
-                      <p className="font-bold text-slate-900 dark:text-white">
-                        Paderborn University
-                      </p>
-                      <p className="text-slate-500 dark:text-slate-400">
-                        {section.address}
-                      </p>
+                <div className="space-y-8">
+                  <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+                    {/* Address Card */}
+                    <div className="flex items-start gap-4 p-6 bg-white dark:bg-slate-800 border border-slate-100 dark:border-slate-700 rounded-2xl shadow-sm">
+                      <div className="p-3 bg-blue-50 dark:bg-blue-900/30 rounded-xl">
+                        <MapPin className="w-6 h-6 text-blue-600 dark:text-blue-400" />
+                      </div>
+                      <div>
+                        <p className="font-bold text-slate-900 dark:text-white mb-1">
+                          Address
+                        </p>
+                        <p className="text-slate-500 dark:text-slate-400 text-sm leading-relaxed">
+                          {section.address}
+                        </p>
+                      </div>
                     </div>
+
+                    {/* Airports Card */}
+                    {section.airports && (
+                      <div className="flex items-start gap-4 p-6 bg-white dark:bg-slate-800 border border-slate-100 dark:border-slate-700 rounded-2xl shadow-sm">
+                        <div className="p-3 bg-blue-50 dark:bg-blue-900/30 rounded-xl">
+                          <Plane className="w-6 h-6 text-blue-600 dark:text-blue-400" />
+                        </div>
+                        <div>
+                          <p className="font-bold text-slate-900 dark:text-white mb-2">
+                            Nearest Airports
+                          </p>
+                          <ul className="space-y-1">
+                            {section.airports.map((airport, aIdx) => (
+                              <li
+                                key={aIdx}
+                                className="text-slate-500 dark:text-slate-400 text-sm"
+                              >
+                                {airport}
+                              </li>
+                            ))}
+                          </ul>
+                        </div>
+                      </div>
+                    )}
+
+                    {/* Train Card */}
+                    {section.train && (
+                      <div className="flex items-start gap-4 p-6 bg-white dark:bg-slate-800 border border-slate-100 dark:border-slate-700 rounded-2xl shadow-sm">
+                        <div className="p-3 bg-blue-50 dark:bg-blue-900/30 rounded-xl">
+                          <Train className="w-6 h-6 text-blue-600 dark:text-blue-400" />
+                        </div>
+                        <div>
+                          <p className="font-bold text-slate-900 dark:text-white mb-1">
+                            Train
+                          </p>
+                          <p className="text-slate-500 dark:text-slate-400 text-sm leading-relaxed">
+                            {section.train}
+                          </p>
+                        </div>
+                      </div>
+                    )}
+
+                    {/* Accommodation Card */}
+                    {section.accommodation && (
+                      <div className="flex items-start gap-4 p-6 bg-white dark:bg-slate-800 border border-slate-100 dark:border-slate-700 rounded-2xl shadow-sm">
+                        <div className="p-3 bg-blue-50 dark:bg-blue-900/30 rounded-xl">
+                          <Hotel className="w-6 h-6 text-blue-600 dark:text-blue-400" />
+                        </div>
+                        <div>
+                          <p className="font-bold text-slate-900 dark:text-white mb-1">
+                            Accommodation
+                          </p>
+                          <p className="text-slate-500 dark:text-slate-400 text-sm leading-relaxed">
+                            {section.accommodation}
+                          </p>
+                        </div>
+                      </div>
+                    )}
+
+                    {/* Wi-Fi Card */}
+                    {section.wifi && (
+                      <div className="flex items-start gap-4 p-6 bg-white dark:bg-slate-800 border border-slate-100 dark:border-slate-700 rounded-2xl shadow-sm">
+                        <div className="p-3 bg-blue-50 dark:bg-blue-900/30 rounded-xl">
+                          <Wifi className="w-6 h-6 text-blue-600 dark:text-blue-400" />
+                        </div>
+                        <div>
+                          <p className="font-bold text-slate-900 dark:text-white mb-1">
+                            Wi-Fi
+                          </p>
+                          <p className="text-slate-500 dark:text-slate-400 text-sm leading-relaxed">
+                            {section.wifi}
+                          </p>
+                        </div>
+                      </div>
+                    )}
                   </div>
+
                   {section.googleMaps && (
-                    <div className="w-full h-[400px] rounded-2xl overflow-hidden border border-slate-100 dark:border-slate-700 shadow-sm">
+                    <div className="w-full h-[450px] rounded-2xl overflow-hidden border border-slate-100 dark:border-slate-700 shadow-lg">
                       <iframe
                         src={section.googleMaps}
                         width="100%"
@@ -434,6 +565,8 @@ const SectionWrapper = ({ section }: { section: Section; key?: any }) => {
               ))}
             </div>
           )}
+
+          {section.faqItems && <FAQAccordion items={section.faqItems} />}
 
           {section.schedule && <Schedule schedule={section.schedule} />}
         </motion.div>
