@@ -17,12 +17,19 @@ export interface DaySchedule {
   events: ScheduleEvent[];
 }
 
+export interface SocialItem {
+  day: string;
+  title: string;
+  description: string;
+}
+
 export interface Section {
   id: string;
   title: string;
   content?: string;
   points?: string[];
   items?: Speaker[];
+  socialItems?: SocialItem[];
   schedule?: DaySchedule[];
   address?: string;
   googleMaps?: string;

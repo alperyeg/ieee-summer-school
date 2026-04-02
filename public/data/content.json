@@ -139,11 +139,27 @@
       "id": "social",
       "title": "Social Activities",
       "content": "Beyond the technical sessions, we have organized several social events to help you network and enjoy the beautiful city of Paderborn.",
-      "points": [
-        "Welcome Reception at the Town Hall",
-        "Guided Historic City Tour",
-        "Gala Dinner at the Pader River",
-        "Farewell Networking Lunch"
+      "socialItems": [
+        {
+          "day": "Monday",
+          "title": "Welcome Dinner",
+          "description": "A welcome dinner to facilitate initial introductions among participants in a relaxed atmosphere."
+        },
+        {
+          "day": "Tuesday",
+          "title": "Guided City Tour",
+          "description": "A guided city tour organized by the City of Paderborn, showcasing the rich history and landmarks of the city."
+        },
+        {
+          "day": "Wednesday",
+          "title": "Outdoor Archery",
+          "description": "An outdoor archery activity designed to promote team spirit, focus, and precision among attendees."
+        },
+        {
+          "day": "Thursday",
+          "title": "MuseumsForum Visit",
+          "description": "A farewell visit to the Heinz Nixdorf MuseumsForum, the world’s largest computer museum, exploring the history of computing."
+        }
       ]
     },
     {
