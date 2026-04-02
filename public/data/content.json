@@ -155,8 +155,8 @@
     }
   ],
   "sponsors": [
-    { 
-      "name": "IEEE CIS", 
+    {
+      "name": "IEEE CIS",
       "logo": "https://picsum.photos/seed/ieee/200/100",
       "link": "https://cis.ieee.org/"
     },
@@ -165,10 +165,10 @@
       "logo": "https://picsum.photos/seed/upb/200/100",
       "link": "https://www.uni-paderborn.de/"
     },
-    { 
-      "name": "DFG", 
-      "logo": "https://picsum.photos/seed/dfg/200/100",
-      "link": "https://www.dfg.de/"
+    {
+      "name": "COLOURS",
+      "logo": "https://www.uni-paderborn.de/fileadmin/_processed_/5/7/csm_SYMBOL_WORDMARK_EUA_HORIZONTAL_v1.0_01_14b471a4a6.jpg",
+      "link": "https://colours-alliance.eu/"
     }
   ],
   "contact": {
