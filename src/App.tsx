@@ -1003,8 +1003,8 @@ export default function App() {
     const fetchData = async () => {
       try {
         const response = await fetch(
-          // "https://raw.githubusercontent.com/alperyeg/ieee-summer-school/refs/heads/main/public/data/content.json",
-          "/ieee-summer-school/data/content.json",
+          "https://raw.githubusercontent.com/alperyeg/ieee-summer-school/refs/heads/main/public/data/content.json",
+          // "/ieee-summer-school/data/content.json",
         );
         if (!response.ok) {
           throw new Error("Failed to fetch content");
